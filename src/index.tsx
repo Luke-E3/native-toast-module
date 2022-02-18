@@ -17,6 +17,25 @@ const NativeToastModule = NativeModules.NativeToastModule
       }
     );
 
+const RNNativeToastLibrary = NativeModules.RNNativeToastLibrary
+? NativeModules.RNNativeToastLibrary
+: new Proxy(
+    {},
+    {
+      get() {
+        throw new Error(LINKING_ERROR);
+      },
+    }
+  );
+
 export function multiply(a: number, b: number): Promise<number> {
   return NativeToastModule.multiply(a, b);
+}
+
+export function show(msg: string, duration?: number): void {
+  if (duration) {
+    RNNativeToastLibrary.show(msg, duration);
+  } else {
+    RNNativeToastLibrary.show(msg);
+  }
 }
