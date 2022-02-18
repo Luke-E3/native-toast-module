@@ -11,11 +11,11 @@ npm install native-toast-module
 ## Usage
 
 ```js
-import { multiply } from "native-toast-module";
+import { show } from "native-toast-module";
 
 // ...
 
-const result = await multiply(3, 7);
+show('Native Toast!')
 ```
 
 ## Contributing
